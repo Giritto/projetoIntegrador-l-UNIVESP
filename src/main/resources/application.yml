@@ -1,8 +1,11 @@
-spring:
+  spring:
   datasource:
     url: jdbc:mysql://localhost:3306/fornecedores
     username: root
     password: GVeDo098!@#
+  sql:
+  init:
+    mode: always
 
   jpa:
       hibernate:
