@@ -1,12 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
 </head>
 <body>
 
-<h1>Hello from homepage</h1>
-<h2 th:text="${message}"></h2>
+<h1>Lista de Fornecedores</h1>
+
+<!-- Link para adicionar novo fornecedor -->
+<a href="/fornecedores/novo">Adicionar Fornecedor</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Material</th>
+        <th>Valor</th>
+        <th>Comentário</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="fornecedor : ${listaFornec}">
+        <td th:text="${fornecedor.nome}"></td>
+        <td th:text="${fornecedor.email}"></td>
+        <td th:text="${fornecedor.telefone}"></td>
+        <td th:text="${fornecedor.material}"></td>
+        <td th:text="${'R$ ' + #numbers.formatDecimal(fornecedor.valor, 1, 2)}"></td>
+        <td th:text="${fornecedor.comentario}"></td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>

@@ -2,10 +2,12 @@ package com.projetointegrador.projetoIntegrador.model;
 
 import jakarta.persistence.*;
 
-@Entity(name = "Fornecedores")
+// Definindo o schema e a table que será usada
+@Entity(name = "fornecedores")
 @Table(name = "fornecedores")
 public class Fornecedor {
 
+    // Definindo os dados
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -15,6 +17,16 @@ public class Fornecedor {
     private String telefone;
     private String material;
     private Float valor;
+    private String comentario;
+
+    // Getters and setters
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
 
     public Long getId() {
         return id;
