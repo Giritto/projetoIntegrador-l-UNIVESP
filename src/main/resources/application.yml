@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
@@ -18,7 +18,3 @@ spring:
     init:
       mode: always
 
-  flyway:
-    enabled: true
-    baseline-on-migrate: true  # Allows Flyway to run on an existing DB
-    locations: classpath:db/migration  # Default folder for migrations

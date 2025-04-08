@@ -1,40 +1,69 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<html class="h-full bg-gray-100" lang="pt" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="h-full">
 
-<h1>Lista de Fornecedores</h1>
+<div class="min-h-full">
+    <nav class="bg-gray-800">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center">
+                    <div class="shrink-0">
+                        <img class="size-8" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                            <a th:href="@{/}" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Fornecedores</a>
+                            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
+                            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
+                            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+                            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Reports</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<!-- Link para adicionar novo fornecedor -->
-<a href="/fornecedores/novo">Adicionar Fornecedor</a>
+    <header class="bg-white shadow-sm">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Lista de Fornecedores</h1>
+        </div>
+    </header>
+    <main>
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <a th:href="@{'/create'}" class="bg-blue-600 font-medium px-3 py-2 rounded-md text-sm text-white inline-block mb-5 hover:bg-blue-700 ">Adicionar</a>
+            <table class="table-auto w-full">
+                <thead class="bg-gray-800 text-white uppercase">
+                <tr>
+                    <th class="px-6 py-3 text-center">Nome</th>
+                    <th class="px-6 py-3 text-center">Email</th>
+                    <th class="px-6 py-3 text-center">Telefone</th>
+                    <th class="px-6 py-3 text-center">Material</th>
+                    <th class="px-6 py-3 text-center">Valor</th>
+                    <th class="px-6 py-3 text-center">Comentário</th>
+                </tr>
+                </thead>
 
-<table>
-    <thead>
-    <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Telefone</th>
-        <th>Material</th>
-        <th>Valor</th>
-        <th>Comentário</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr th:each="fornecedor : ${listaFornec}">
-        <td th:text="${fornecedor.nome}"></td>
-        <td th:text="${fornecedor.email}"></td>
-        <td th:text="${fornecedor.telefone}"></td>
-        <td th:text="${fornecedor.material}"></td>
-        <td th:text="${'R$ ' + #numbers.formatDecimal(fornecedor.valor, 1, 2)}"></td>
-        <td th:text="${fornecedor.comentario}"></td>
-    </tr>
-    </tbody>
-</table>
-
+                <tbody>
+                <tr  class="bg-white border-b" th:each="fornecedor : ${listaFornec}">
+                    <td  class="px-6 py-5 text-center" th:text="${fornecedor.nome}"></td>
+                    <td  class="px-6 py-5 text-center" th:text="${fornecedor.email}"></td>
+                    <td  class="px-6 py-5 text-center" th:text="${fornecedor.telefone}"></td>
+                    <td  class="px-6 py-5 text-center" th:text="${fornecedor.material}"></td>
+                    <td class="px-6 py-5 text-center" th:text="'R$ ' + ${#numbers.formatDecimal(fornecedor.valor, 1, 2)}"></td>
+                    <td class="px-6 py-5 text-center whitespace-pre-line" th:text="${fornecedor.comentario}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
 </body>
 </html>
