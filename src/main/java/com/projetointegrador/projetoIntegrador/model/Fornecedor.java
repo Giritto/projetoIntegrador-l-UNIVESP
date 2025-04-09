@@ -1,6 +1,8 @@
 package com.projetointegrador.projetoIntegrador.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.NumberFormat;
 
 // Definindo o schema e a table que será usada
 @Entity(name = "fornecedores")
@@ -12,11 +14,28 @@ public class Fornecedor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @NotEmpty(message = "O nome da empresa deve ser inserido")
+    @Column(name = "nome")
     private String nome;
+
+    @Email(message = "Por favor insira um endereço de email válido")
+    @Column(name = "email")
     private String email;
+
+    @Size(min = 10, max = 20, message = "Telefone deve ter entre 10 e 20 caracteres")
+    @Column(name = "telefone")
     private String telefone;
+
+    @NotEmpty(message = "O tipo de Material oferecido deve ser inserido")
+    @Column(name = "material")
     private String material;
-    private Float valor;
+
+    @NotEmpty(message = "O valor deve ser inserido")
+    @Column(name = "valor")
+    private String valor;
+
+    @Column(name = "comentario")
     private String comentario;
 
     // Getters and setters
@@ -68,11 +87,11 @@ public class Fornecedor {
         this.material = material;
     }
 
-    public Float getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(Float valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 }

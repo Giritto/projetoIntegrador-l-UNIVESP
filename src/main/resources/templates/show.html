@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html class="h-full bg-gray-100" lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="h-full">
+
+<div class="min-h-full">
+    <nav class="bg-gray-800">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center">
+                    <div class="shrink-0">
+                        <img class="size-8" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a th:href="@{/}" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Lista</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white shadow-sm">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900" th:text="${fornecedor.nome}"></h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <table class="table-auto w-full">
+            <tr>
+                <th class="uppercase border text-left px-6 bg-gray-800 text-white">Nome</th>
+                <td class="px-6 py-4 border bg-white" th:text="${fornecedor.nome}"></td>
+            </tr>
+
+            <tr>
+                <th class="uppercase border text-left px-6 bg-gray-800 text-white">Email</th>
+                <td class="px-6 py-4 border bg-white" th:text="${fornecedor.email}"></td>
+            </tr>
+
+            <tr>
+                <th class="uppercase border text-left px-6 bg-gray-800 text-white">Telefone</th>
+                <td class="px-6 py-4 border bg-white" th:text="${fornecedor.telefone}"></td>
+            </tr>
+
+            <tr>
+                <th class="uppercase border text-left px-6 bg-gray-800 text-white">Material</th>
+                <td class="px-6 py-4 border bg-white" th:text="${fornecedor.material}"></td>
+            </tr>
+
+            <tr>
+                <th class="uppercase border text-left px-6 bg-gray-800 text-white">Valor</th>
+                <td class="px-6 py-4 border bg-white" th:text="${fornecedor.valor}"></td>
+            </tr>
+
+            <tr>
+                <th class="uppercase border text-left px-6 bg-gray-800 text-white">Comentário</th>
+                <td class="px-6 py-4 border bg-white" th:text="${fornecedor.comentario}"></td>
+            </tr>
+        </table>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
