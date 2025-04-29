@@ -57,7 +57,7 @@
 
             <tr>
                 <th class="uppercase border text-left px-6 bg-gray-800 text-white">Valor</th>
-                <td class="px-6 py-4 border bg-white" th:text="${fornecedor.valor}"></td>
+                <td class="px-6 py-4 border bg-white" th:text="${#numbers.formatDecimal(fornecedor.valor, 1, 'COMMA', 2, 'POINT')}"></td>
             </tr>
 
             <tr>
