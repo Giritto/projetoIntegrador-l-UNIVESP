@@ -21,7 +21,7 @@ public class ServicoFornecedores {
 
     // Método para recuperar todos os fornecedores do banco de dados
     public List<Fornecedor> getAllFornec() {
-        return (List<Fornecedor>) repoFornec.findAll();
+        return repoFornec.findAll(); // Removed the cast as it's unnecessary
     }
 
     // Método para buscar um fornecedor pelo ID
@@ -37,5 +37,14 @@ public class ServicoFornecedores {
     // Método para deletar um fornecedor do banco de dados
     public void deleteById(Long id) {
         repoFornec.deleteById(id);
+    }
+
+    // Buscar fornecedor
+    public List<Fornecedor> searchByNome(String nome) {
+        return repoFornec.findByNomeContainingIgnoreCase(nome);
+    }
+
+    public List<Fornecedor> searchByMaterial(String material) {
+        return repoFornec.findByMaterialContainingIgnoreCase(material);
     }
 }

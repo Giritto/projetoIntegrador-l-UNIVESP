@@ -21,8 +21,23 @@ public class ControllerHome {
     }
 
     @GetMapping("/")
-    public String home(@RequestParam(value = "nome", defaultValue = "") String nome, Model model) {
-        List<Fornecedor> listaFornec = fornecService.getAllFornec();
+    public String home(
+            @RequestParam(value = "searchTerm", required = false) String searchTerm,
+            @RequestParam(value = "searchType", defaultValue = "nome") String searchType,
+            Model model) {
+
+        List<Fornecedor> listaFornec;
+
+        if (searchTerm != null && !searchTerm.isEmpty()) {
+            if ("material".equals(searchType)) {
+                listaFornec = fornecService.searchByMaterial(searchTerm);
+            } else {
+                listaFornec = fornecService.searchByNome(searchTerm);
+            }
+        } else {
+            listaFornec = fornecService.getAllFornec();
+        }
+
         model.addAttribute("listaFornec", listaFornec);
         return "home";
     }
@@ -70,7 +85,6 @@ public class ControllerHome {
         return "create";
     }
 
-
     @GetMapping("fornecedor/{id}/remove")
     public String delete(@PathVariable long id, RedirectAttributes redirectAttributes) {
         fornecService.deleteById(id);
@@ -84,6 +98,4 @@ public class ControllerHome {
                 .ifPresent(fornecedor -> model.addAttribute("fornecedor", fornecedor));
         return "show";
     }
-
 }
-
